@@ -68,6 +68,24 @@ export const authors: Author[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
   },
+  {
+    id: 6,
+    name: "Leo Tolstoy",
+    bio: "Count Lev Nikolayevich Tolstoy was a Russian writer who is regarded as one of the greatest authors of all time. He received multiple nominations for the Nobel Prize in Literature and is best known for his novels War and Peace and Anna Karenina.",
+    birthYear: 1828,
+    nationality: "Russian",
+    imageUrl:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+  },
+  {
+    id: 7,
+    name: "Fyodor Dostoevsky",
+    bio: "Fyodor Mikhailovich Dostoevsky was a Russian novelist, short story writer, essayist, and journalist. His literary works explore human psychology in the troubled political, social, and spiritual atmospheres of 19th-century Russia.",
+    birthYear: 1821,
+    nationality: "Russian",
+    imageUrl:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+  },
 ];
 
 export const books: Book[] = [
@@ -200,6 +218,32 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=600&fit=crop",
     pages: 209,
     isbn: "978-0156907392",
+  },
+  {
+    id: 11,
+    title: "War and Peace",
+    authorId: 6,
+    publishedYear: 1869,
+    genre: "Historical Fiction",
+    description:
+      "War and Peace is a literary work mixed with chapters on history and philosophy by the Russian author Leo Tolstoy. It is regarded as one of Tolstoy's finest literary achievements and remains an internationally praised classic of world literature.",
+    coverUrl:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
+    pages: 1225,
+    isbn: "978-0199232765",
+  },
+  {
+    id: 12,
+    title: "Anna Karenina",
+    authorId: 6,
+    publishedYear: 1877,
+    genre: "Realist Novel",
+    description:
+      "Anna Karenina is a novel by the Russian author Leo Tolstoy, first published in book form in 1878. It is regarded as one of the greatest works of literature and tells the tragic story of a married aristocrat and her affair with the affluent Count Vronsky.",
+    coverUrl:
+      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=600&fit=crop",
+    pages: 864,
+    isbn: "978-0143035008",
   },
 ];
 

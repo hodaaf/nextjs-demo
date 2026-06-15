@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchBar from './SearchBar';
+import Pagination from './Pagination';
 import { Book, Author } from '@/lib/data';
 
 interface BooksClientProps {
@@ -33,6 +34,14 @@ export default function BooksClient({ initialBooks, authors }: BooksClientProps)
       return matchesSearch && matchesGenre;
     });
   }, [initialBooks, searchQuery, selectedGenre, authors]);
+  
+  const currentPage = parseInt(searchParam.get('page') || '1');
+  const booksPerPage = 6;
+  const startIndex = (currentPage - 1) * booksPerPage;
+  const endIndex = startIndex + booksPerPage;
+  const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+
+  const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -54,6 +63,7 @@ export default function BooksClient({ initialBooks, authors }: BooksClientProps)
               onClick={() => {
                 const params = new URLSearchParams(searchParam.toString());
                 params.set('genre', genre);
+                params.set('page', '1'); // Reset to first page on genre change
                 router.push(`?${params.toString()}`);
               }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
@@ -81,7 +91,7 @@ export default function BooksClient({ initialBooks, authors }: BooksClientProps)
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBooks.map((book) => {
+          {paginatedBooks.map((book) => {
             const author = authors.find(a => a.id === book.authorId);
             
             return (
@@ -117,6 +127,15 @@ export default function BooksClient({ initialBooks, authors }: BooksClientProps)
           })}
         </div>
       )}
+      <Pagination 
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={ (page) => {
+            const params = new URLSearchParams(searchParam.toString());
+            params.set('page', String(page));
+            router.push(`?${params.toString()}`)
+        }}
+      />
     </div>
   );
 }
