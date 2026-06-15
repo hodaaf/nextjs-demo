@@ -20,6 +20,16 @@ export interface Book {
   coverUrl: string;
   pages: number;
   isbn: string;
+  publisherId?: number; 
+}
+
+export interface Publisher {
+  id: number;
+  name: string;
+  foundedYear: number;
+  country: string;
+  email?: string;
+  phone?: string;
 }
 
 export const authors: Author[] = [
@@ -68,6 +78,24 @@ export const authors: Author[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
   },
+  {
+    id: 6,
+    name: "Leo Tolstoy",
+    bio: "Count Lev Nikolayevich Tolstoy was a Russian writer who is regarded as one of the greatest authors of all time. He received multiple nominations for the Nobel Prize in Literature and is best known for his novels War and Peace and Anna Karenina.",
+    birthYear: 1828,
+    nationality: "Russian",
+    imageUrl:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+  },
+  {
+    id: 7,
+    name: "Fyodor Dostoevsky",
+    bio: "Fyodor Mikhailovich Dostoevsky was a Russian novelist, short story writer, essayist, and journalist. His literary works explore human psychology in the troubled political, social, and spiritual atmospheres of 19th-century Russia.",
+    birthYear: 1821,
+    nationality: "Russian",
+    imageUrl:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+  },
 ];
 
 export const books: Book[] = [
@@ -96,6 +124,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop",
     pages: 474,
     isbn: "978-0141439587",
+    publisherId: 3,
   },
   {
     id: 3,
@@ -122,6 +151,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=400&h=600&fit=crop",
     pages: 112,
     isbn: "978-0452284244",
+    publisherId: 2,
   },
   {
     id: 5,
@@ -148,6 +178,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=400&h=600&fit=crop",
     pages: 272,
     isbn: "978-0062073488",
+    publisherId: 3,
   },
   {
     id: 7,
@@ -161,6 +192,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=400&h=600&fit=crop",
     pages: 127,
     isbn: "978-0684801223",
+    publisherId: 3,
   },
   {
     id: 8,
@@ -174,6 +206,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
     pages: 332,
     isbn: "978-0684801469",
+    publisherId: 2,
   },
   {
     id: 9,
@@ -187,6 +220,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop",
     pages: 194,
     isbn: "978-0156628709",
+    publisherId: 3,
   },
   {
     id: 10,
@@ -200,7 +234,64 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=600&fit=crop",
     pages: 209,
     isbn: "978-0156907392",
+    publisherId: 2,
   },
+  {
+    id: 11,
+    title: "War and Peace",
+    authorId: 6,
+    publishedYear: 1869,
+    genre: "Historical Fiction",
+    description:
+      "War and Peace is a literary work mixed with chapters on history and philosophy by the Russian author Leo Tolstoy. It is regarded as one of Tolstoy's finest literary achievements and remains an internationally praised classic of world literature.",
+    coverUrl:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
+    pages: 1225,
+    isbn: "978-0199232765",
+    publisherId: 1,
+  },
+  {
+    id: 12,
+    title: "Anna Karenina",
+    authorId: 6,
+    publishedYear: 1877,
+    genre: "Realist Novel",
+    description:
+      "Anna Karenina is a novel by the Russian author Leo Tolstoy, first published in book form in 1878. It is regarded as one of the greatest works of literature and tells the tragic story of a married aristocrat and her affair with the affluent Count Vronsky.",
+    coverUrl:
+      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=600&fit=crop",
+    pages: 864,
+    isbn: "978-0143035008",
+    publisherId: 1,
+  },
+];
+
+export const publishers: Publisher[] = [
+  {
+    id: 1,
+    name: "Penguin Random House",
+    foundedYear: 2013,
+    country: "United States",
+    email: "info@penguinrandomhouse.com",
+    phone: "+1 212-782-9000",
+  },
+  {
+    id: 2,
+    name: "HarperCollins",
+    foundedYear: 1989,
+    country: "United States",
+    email: "info@harpercollins.com",
+    phone: "+1 212-207-7000",
+  },
+  {
+    id: 3,
+    name: "Simon & Schuster",
+    foundedYear: 1924,
+    country: "United States",
+    email: "info@simonandschuster.com",
+    phone: "+1 212-698-7000",
+  },
+
 ];
 
 // Helper functions
@@ -212,14 +303,42 @@ export function getBookById(id: number): Book | undefined {
   return books.find((book) => book.id === id);
 }
 
+export function getPublisherById(id: number): Publisher | undefined {
+  return publishers.find((publisher) => publisher.id === id);
+}
+
 export function getBooksByAuthorId(authorId: number): Book[] {
   return books.filter((book) => book.authorId === authorId);
+}
+
+export function getBooksByPublisherId(publisherId: number): Book[] {
+  return books.filter((book) => book.publisherId === publisherId);
+}
+
+export async function getAllAuthorsWithDelay(): Promise<Author[]> {
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  return authors;
 }
 
 export function getAllAuthors(): Author[] {
   return authors;
 }
 
+// Simulate network delay - used to test loading in books page
+export async function getAllBooksWithDelay(): Promise<Book[]> {
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  return books;
+}
+
 export function getAllBooks(): Book[] {
   return books;
+}
+
+export async function getAllPublishersWithDelay(): Promise<Publisher[]> {
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  return publishers;
+}
+
+export function getAllPublishers(): Publisher[] {
+  return publishers;
 }

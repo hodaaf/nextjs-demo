@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAllBooks, getAllAuthors } from "@/lib/data";
+import { getAllBooks, getAllAuthors, publishers } from "@/lib/data";
 
 export default function Home() {
   const books = getAllBooks().slice(0, 6); // Get first 6 books
@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 text-white py-20">
+      <section className="bg-linear-to-br from-zinc-900 via-zinc-800 to-zinc-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -33,6 +33,12 @@ export default function Home() {
               >
                 Meet Authors
               </Link>
+              <Link
+                href="/publishers"
+                className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-zinc-900 transition-colors"
+              >
+                Meet Publishers
+              </Link>
             </div>
           </div>
         </div>
@@ -41,7 +47,7 @@ export default function Home() {
       {/* Stats Section */}
       <section className="py-12 bg-white dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="p-6">
               <div className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">
                 {getAllBooks().length}
@@ -56,6 +62,14 @@ export default function Home() {
               </div>
               <div className="text-zinc-600 dark:text-zinc-400">
                 Featured Authors
+              </div>
+            </div>
+            <div className="p-6">
+              <div className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">
+                {publishers.length}
+              </div>
+              <div className="text-zinc-600 dark:text-zinc-400">
+                Featured Publishers
               </div>
             </div>
             <div className="p-6">
@@ -101,50 +115,6 @@ export default function Home() {
                 </h3>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Learning Features Section */}
-      <section className="py-16 bg-white dark:bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 text-center mb-12">
-            What You&apos;ll Learn
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-zinc-50 dark:bg-zinc-800 p-6 rounded-lg">
-              <div className="text-3xl mb-4">🚀</div>
-              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
-                Next.js App Router
-              </h3>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                Learn how to use the modern App Router with server and client
-                components.
-              </p>
-            </div>
-
-            <div className="bg-zinc-50 dark:bg-zinc-800 p-6 rounded-lg">
-              <div className="text-3xl mb-4">🎨</div>
-              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
-                Dynamic Routing
-              </h3>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                Explore dynamic routes with parameters for books and author
-                pages.
-              </p>
-            </div>
-
-            <div className="bg-zinc-50 dark:bg-zinc-800 p-6 rounded-lg">
-              <div className="text-3xl mb-4">💾</div>
-              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
-                Data Management
-              </h3>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                See how to structure and manage in-memory data without a
-                database.
-              </p>
-            </div>
           </div>
         </div>
       </section>
