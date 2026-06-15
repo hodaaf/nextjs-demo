@@ -315,12 +315,28 @@ export function getBooksByPublisherId(publisherId: number): Book[] {
   return books.filter((book) => book.publisherId === publisherId);
 }
 
+export async function getAllAuthorsWithDelay(): Promise<Author[]> {
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  return authors;
+}
+
 export function getAllAuthors(): Author[] {
   return authors;
 }
 
+// Simulate network delay - used to test loading in books page
+export async function getAllBooksWithDelay(): Promise<Book[]> {
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  return books;
+}
+
 export function getAllBooks(): Book[] {
   return books;
+}
+
+export async function getAllPublishersWithDelay(): Promise<Publisher[]> {
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  return publishers;
 }
 
 export function getAllPublishers(): Publisher[] {

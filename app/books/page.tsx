@@ -1,9 +1,9 @@
-import { getAllBooks, getAllAuthors } from "@/lib/data";
+import { getAllAuthors, getAllBooksWithDelay } from "@/lib/data";
 import BooksClient from "@/components/BooksClient";
 import { Suspense } from "react";
 
-export default function BooksPage() {
-  const books = getAllBooks();
+export default async function BooksPage() {
+  const books = await getAllBooksWithDelay();
   const authors = getAllAuthors();
 
   return (

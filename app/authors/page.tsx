@@ -1,9 +1,9 @@
-import { getAllAuthors } from '@/lib/data';
+import { getAllAuthorsWithDelay } from '@/lib/data';
 import AuthorsClient from '@/components/AuthorsClient';
 import { Suspense } from 'react';
 
-export default function AuthorsPage() {
-  const authors = getAllAuthors();
+export default async function AuthorsPage() {
+  const authors = await getAllAuthorsWithDelay();
 
  return (
     <Suspense
