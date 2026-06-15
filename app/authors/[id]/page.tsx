@@ -30,7 +30,7 @@ export default async function AuthorPage({
       <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-8 mt-6">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Author Image */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <div className="relative w-48 h-48 rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800 shadow-xl">
               <Image
                 src={author.imageUrl}
